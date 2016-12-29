@@ -1,7 +1,10 @@
 # react-disposable-decorator
-Decorator for properly disposing of observables
+Decorator for properly disposing and canceling observables.
 
-Creates `this.disposables = []` and calls `.dispose()` on all elements of the array when the decorated component unmounts
+Adds a `disposables` array as a prop to the decorated component. Anything pushed into the disposables prop
+will be properly canceled and disposed when the decorated component is unmounted. This means that in your
+.subscribe(), you won't have to check if your component has been unmounted while you were waiting on
+a value from an observable.
 
 #Installation
 `npm install react-disposable-decorator`
@@ -11,16 +14,12 @@ Creates `this.disposables = []` and calls `.dispose()` on all elements of the ar
 import Disposable from 'react-disposable-decorator';
 
 @Disposable //decorate the component
-export default class someComponent extends React.Component {
-  constructor(props) {
-	  super(props);
-  }
-  
+export default class SomeComponent extends React.Component {
   componentDidMount(){
-    this.disposables.push( //push observables to the disposables array
+    this.props.disposables.push( //push observables to the disposables array
       fetchSomeData.subscribe( data => this.setstate({data}) )
     )
   }
-
+}
 ...
 ```
