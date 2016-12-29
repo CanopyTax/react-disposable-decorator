@@ -1,10 +1,10 @@
 # react-disposable-decorator
-Decorator for properly disposing and canceling observables.
+Decorator for automatically canceling observable subscriptions when a React
+component is unmounted.
 
-Adds a `disposables` array as a prop to the decorated component. Anything pushed into the disposables prop
-will be properly canceled and disposed when the decorated component is unmounted. This means that in your
-.subscribe(), you won't have to check if your component has been unmounted while you were waiting on
-a value from an observable.
+A `cancelWhenUnmounted` function is passed to the decorated component as a prop,
+which should be called with an observable subscription (a disposable). [Click here](https://github.com/Reactive-Extensions/RxJS/issues/817#issuecomment-122729155)
+for more documentation on canceling observables.
 
 #Installation
 `npm install react-disposable-decorator`
@@ -15,10 +15,13 @@ import Disposable from 'react-disposable-decorator';
 
 @Disposable //decorate the component
 export default class SomeComponent extends React.Component {
-  componentDidMount(){
-    this.props.disposables.push( //push observable subscriptions to the disposables array
+  componentDidMount() {
+    this.props.cancelWhenUnmounted(
+      /* This will be automatically canceled if the observable does not
+	   * onComplete or onError before the React component is unmounted.
+	   */
       fetchSomeData.subscribe( data => this.setstate({data}) )
-    )
+    );
   }
 }
 ...
