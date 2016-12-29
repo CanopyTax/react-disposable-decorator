@@ -16,7 +16,7 @@ import Disposable from 'react-disposable-decorator';
 @Disposable //decorate the component
 export default class SomeComponent extends React.Component {
   componentDidMount(){
-    this.props.disposables.push( //push observables to the disposables array
+    this.props.disposables.push( //push observable subscriptions to the disposables array
       fetchSomeData.subscribe( data => this.setstate({data}) )
     )
   }
