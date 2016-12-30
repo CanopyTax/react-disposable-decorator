@@ -1,6 +1,6 @@
 import React from "react";
 
-const inTestingEnv = !!jasmine;
+const inTestingEnv = typeof jasmine !== 'undefined';
 const enabled = !inTestingEnv || (typeof ReactDisposableDecoratorEnabled !== 'undefined' && ReactDisposableDecoratorEnabled);
 if (!enabled) {
 	// See https://github.com/airbnb/enzyme/issues/98
