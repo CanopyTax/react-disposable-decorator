@@ -1,6 +1,17 @@
 import React from "react";
 
+const inTestingEnv = !!jasmine;
+const enabled = !inTestingEnv || (typeof ReactDisposableDecoratorEnabled !== 'undefined' && ReactDisposableDecoratorEnabled);
+if (!enabled) {
+	// See https://github.com/airbnb/enzyme/issues/98
+	console.log(`react-disposable-decorator is disabled so that enzyme shallow rendering still works. To override, set ReactDisposableDecoratorEnabled = true`);
+}
+
 export default function(DecoratedComponent) {
+	if (!enabled) {
+		return DecoratedComponent;
+	}
+
 	return class Disposable extends React.Component {
 		constructor(props) {
 			super(props);
