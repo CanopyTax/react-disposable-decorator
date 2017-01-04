@@ -9,7 +9,7 @@ if (!enabled) {
 
 export default function(DecoratedComponent) {
 	if (!enabled) {
-		return DecoratedComponent;
+		return <DecoratedComponent cancelWhenUnmounted={() => {}} />;
 	}
 
 	return class Disposable extends React.Component {
