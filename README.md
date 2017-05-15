@@ -27,13 +27,13 @@ export default class SomeComponent extends React.Component {
       fetchSomeData.subscribe( data => this.setstate({data}) )
     );
   }
-	componentWillReceiveProps(nextProps) {
-		// Example usage of how you might use cancelAllSubscriptions
-		if (nextProps.needToMakeNewSubscriptions) {
-			this.props.cancelAllSubscriptions();
-			fetchSomeData.subscribe(data => this.setState({data}));
-		}
-	}
+  componentWillReceiveProps(nextProps) {
+    // Example usage of how you might use cancelAllSubscriptions
+    if (nextProps.needToMakeNewSubscriptions) {
+      this.props.cancelAllSubscriptions();
+      fetchSomeData.subscribe(data => this.setState({data}));
+    }
+  }
 }
 ...
 ```
