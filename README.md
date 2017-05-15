@@ -31,7 +31,9 @@ export default class SomeComponent extends React.Component {
     // Example usage of how you might use cancelAllSubscriptions
     if (nextProps.needToMakeNewSubscriptions) {
       this.props.cancelAllSubscriptions();
-      fetchSomeData.subscribe(data => this.setState({data}));
+      this.props.cancelWhenUnmounted(
+        fetchSomeData.subscribe(data => this.setState({data}));
+      );
     }
   }
 }
