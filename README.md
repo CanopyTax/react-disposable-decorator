@@ -10,10 +10,10 @@ Also, a `cancelAllSubscriptions` function is passed to the decorated component a
 no arguments, and will cancel all subscriptions that were registered via `cancelWhenUnmounted`. It will also reset the list of
 subscriptions to be empty, so that future calls to `cancelWhenUnmounted` and `cancelAllSubscriptions` will start fresh.
 
-#Installation
+# Installation
 `npm install react-disposable-decorator`
 
-#Usage
+# Usage
 ```js
 import Cancelable from 'react-disposable-decorator';
 
