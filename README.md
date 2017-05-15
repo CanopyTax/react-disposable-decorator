@@ -6,14 +6,18 @@ A `cancelWhenUnmounted` function is passed to the decorated component as a prop,
 which should be called with an observable subscription (a disposable). [Click here](https://github.com/Reactive-Extensions/RxJS/issues/817#issuecomment-122729155)
 for more documentation on canceling observables.
 
+Also, a `cancelAllSubscriptions` function is passed to the decorated component as a prop. This should be called with
+no arguments, and will cancel all subscriptions that were registered via `cancelWhenUnmounted`. It will also reset the list of
+subscriptions to be empty, so that future calls to `cancelWhenUnmounted` and `cancelAllSubscriptions` will start fresh.
+
 #Installation
 `npm install react-disposable-decorator`
 
 #Usage
 ```js
-import Disposable from 'react-disposable-decorator';
+import Cancelable from 'react-disposable-decorator';
 
-@Disposable //decorate the component
+@Cancelable //decorate the component
 export default class SomeComponent extends React.Component {
   componentDidMount() {
     this.props.cancelWhenUnmounted(
@@ -23,6 +27,13 @@ export default class SomeComponent extends React.Component {
       fetchSomeData.subscribe( data => this.setstate({data}) )
     );
   }
+	componentWillReceiveProps(nextProps) {
+		// Example usage of how you might use cancelAllSubscriptions
+		if (nextProps.needToMakeNewSubscriptions) {
+			this.props.cancelAllSubscriptions();
+			fetchSomeData.subscribe(data => this.setState({data}));
+		}
+	}
 }
 ...
 ```
