@@ -14,14 +14,10 @@ export default function(DecoratedComponent) {
 			this.disposables = [];
 		}
 		render() {
-			return <DecoratedComponent {...this.props} cancelWhenUnmounted={this.cancelWhenUnmounted} />
+			return <DecoratedComponent {...this.props} cancelWhenUnmounted={this.cancelWhenUnmounted} cancelAllSubscriptions={this.cancelAllSubscriptions} />
 		}
 		componentWillUnmount() {
-			this.disposables.forEach(disposable => {
-				if (disposable && typeof disposable.dispose === 'function') {
-					disposable.dispose();
-				}
-			});
+			this.cancelAllSubscriptions();
 		}
 		cancelWhenUnmounted = (...thingsToCancel) => {
 			thingsToCancel.forEach(thingToCancel => {
@@ -30,6 +26,15 @@ export default function(DecoratedComponent) {
 				}
 				this.disposables.push(thingToCancel);
 			});
+		}
+		cancelAllSubscriptions = () => {
+			this.disposables.forEach(disposable => {
+				if (disposable && typeof disposable.dispose === 'function') {
+					disposable.dispose();
+				}
+			});
+
+			this.disposables = [];
 		}
 	}
 }
