@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DisposableElement should provide close method 1`] = `
+<body>
+  <div>
+    <div>
+      Hello 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DisposableElement should render 1`] = `
+<body>
+  <div>
+    <div>
+      Hello 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DisposableElement should work with disposable decorator 1`] = `
+<body>
+  <div>
+    <button />
+  </div>
+</body>
+`;
+
+exports[`DisposableElement should work with disposable decorator 2`] = `<body />`;

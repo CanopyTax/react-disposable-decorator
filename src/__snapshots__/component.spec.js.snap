@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CancelableComponent should render 1`] = `
+<CancelableComponent>
+  <Component
+    cancelAllSubscriptions={[Function]}
+    cancelWhenUnmounted={[Function]}
+    stuff={1}
+  >
+    <div>
+      Hello 
+      1
+    </div>
+  </Component>
+</CancelableComponent>
+`;

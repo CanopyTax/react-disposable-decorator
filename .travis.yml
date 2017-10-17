@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+      - "5.3.0"
+before_script:
+      - npm install
+      - npm install -g codecov
+      - npm run build
+script:
+    - npm run test
+    - codecov
