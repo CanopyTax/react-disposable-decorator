@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisposableElement should render 1`] = `
-<DisposableElement>
+exports[`CancelableComponent should render 1`] = `
+<CancelableComponent>
   <Component
     cancelAllSubscriptions={[Function]}
     cancelWhenUnmounted={[Function]}
@@ -12,5 +12,5 @@ exports[`DisposableElement should render 1`] = `
       1
     </div>
   </Component>
-</DisposableElement>
+</CancelableComponent>
 `;

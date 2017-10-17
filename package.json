@@ -1,8 +1,8 @@
 {
-  "name": "react-disposable-decorator",
-  "version": "2.1.0",
-  "description": "decorator for handling observables",
-  "main": "lib/react-disposable-decorator.js",
+  "name": "react-cancelable",
+  "version": "1.0.0",
+  "description": "Primitives for automatically cancelling observable subscriptions in React",
+  "main": "lib/react-cancelable.js",
   "scripts": {
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib --source-maps",

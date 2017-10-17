@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisposableDecorator should render 1`] = `
+exports[`Cancelable decorator should render 1`] = `
 <Disposable
   stuff={1}
 >

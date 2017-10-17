@@ -4,7 +4,7 @@ import { Observable } from "rx";
 
 const inTestingEnv = typeof jasmine !== "undefined";
 
-export function DisposableDecorator() {
+export function Cancelable() {
 	return function decorator(DecoratedComponent) {
 		return class Disposable extends React.Component {
 			disposables = [];
@@ -26,7 +26,7 @@ export function DisposableDecorator() {
 	};
 }
 
-export function disposableModal(El, props = {}) {
+export function cancelableModal(El, props = {}) {
 	let el;
 
 	return Observable.create(observer => {
@@ -43,7 +43,7 @@ export function disposableModal(El, props = {}) {
 	});
 }
 
-export class DisposableElement extends React.Component {
+export class CancelableComponent extends React.Component {
 	disposables = [];
 	render() {
 		return this.props.children(

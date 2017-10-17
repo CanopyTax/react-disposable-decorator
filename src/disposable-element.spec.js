@@ -1,16 +1,16 @@
-import { DisposableElement } from "./react-disposable.js";
+import { CancelableComponent } from "./react-cancelable.js";
 import { Observable } from "rx";
 import { mount } from "enzyme";
 import React from "react";
 
-describe("DisposableElement", function() {
+describe("CancelableComponent", function() {
 	it("should render", function() {
 		function Component({ cancelWhenUnmounted, cancelAllSubscriptions, stuff }) {
 			return <div>Hello {stuff}</div>;
 		}
 
 		const wrapper = mount(
-			<DisposableElement>
+			<CancelableComponent>
 				{(cancelWhenUnmounted, cancelAllSubscriptions) => (
 					<Component
 						cancelWhenUnmounted={cancelWhenUnmounted}
@@ -18,7 +18,7 @@ describe("DisposableElement", function() {
 						stuff={1}
 					/>
 				)}
-			</DisposableElement>
+			</CancelableComponent>
 		);
 
 		expect(wrapper).toMatchSnapshot();
@@ -39,7 +39,7 @@ describe("DisposableElement", function() {
 		}
 
 		const wrapper = mount(
-			<DisposableElement>
+			<CancelableComponent>
 				{(cancelWhenUnmounted, cancelAllSubscriptions) => (
 					<Component
 						cancelWhenUnmounted={cancelWhenUnmounted}
@@ -47,7 +47,7 @@ describe("DisposableElement", function() {
 						stuff={1}
 					/>
 				)}
-			</DisposableElement>
+			</CancelableComponent>
 		);
 
 		wrapper.unmount();
@@ -77,7 +77,7 @@ describe("DisposableElement", function() {
 		}
 
 		const wrapper = mount(
-			<DisposableElement>
+			<CancelableComponent>
 				{(cancelWhenUnmounted, cancelAllSubscriptions) => (
 					<Component
 						cancelWhenUnmounted={cancelWhenUnmounted}
@@ -85,7 +85,7 @@ describe("DisposableElement", function() {
 						stuff={1}
 					/>
 				)}
-			</DisposableElement>
+			</CancelableComponent>
 		);
 
 		setTimeout(done, 200);
@@ -104,7 +104,7 @@ describe("DisposableElement", function() {
 		}
 
 		const makeError = () => mount(
-			<DisposableElement>
+			<CancelableComponent>
 				{(cancelWhenUnmounted, cancelAllSubscriptions) => (
 					<Component
 						cancelWhenUnmounted={cancelWhenUnmounted}
@@ -112,7 +112,7 @@ describe("DisposableElement", function() {
 						stuff={1}
 					/>
 				)}
-			</DisposableElement>
+			</CancelableComponent>
 		);
 
 		expect(makeError).toThrowError('cancelWhenUnmounted should be called with one or more disposables (an object with a dispose function)');

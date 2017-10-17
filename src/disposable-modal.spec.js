@@ -1,4 +1,4 @@
-import { DisposableDecorator, disposableModal } from "./react-disposable.js";
+import { Cancelable, cancelableModal } from "./react-cancelable.js";
 import { Observable } from "rx";
 import { mount } from "enzyme";
 import React from "react";
@@ -9,7 +9,7 @@ describe("DisposableElement", function() {
 			return <div>Hello {stuff}</div>;
 		}
 
-		const disposable = disposableModal(Component).subscribe(data => {
+		const disposable = cancelableModal(Component).subscribe(data => {
 		});
 
 		expect(document.body).toMatchSnapshot();
@@ -26,7 +26,7 @@ describe("DisposableElement", function() {
 			}
 		}
 
-		const disposable = disposableModal(Component).subscribe(data => {});
+		const disposable = cancelableModal(Component).subscribe(data => {});
 
 		setTimeout(() => {
 			expect(document.body).toMatchSnapshot();
@@ -39,7 +39,7 @@ describe("DisposableElement", function() {
 		class Component extends React.Component {
 			componentDidMount() {
 				this.props.cancelWhenUnmounted(
-					disposableModal(Modal).subscribe(data => {})
+					cancelableModal(Modal).subscribe(data => {})
 				);
 			}
 			render() {
@@ -53,7 +53,7 @@ describe("DisposableElement", function() {
 			}
 		}
 
-		const Decorated = DisposableDecorator()(Component);
+		const Decorated = Cancelable()(Component);
 		const wrapper = mount(<Decorated stuff={1} />);
 		expect(document.body).toMatchSnapshot();
 		wrapper.unmount();

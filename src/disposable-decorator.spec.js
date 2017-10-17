@@ -1,15 +1,15 @@
-import { DisposableDecorator } from "./react-disposable.js";
+import { Cancelable } from "./react-cancelable.js";
 import { Observable } from "rx";
 import { mount } from "enzyme";
 import React from "react";
 
-describe("DisposableDecorator", function() {
+describe("Cancelable decorator", function() {
 	it("should render", function() {
 		function Component({ cancelWhenUnmounted, cancelAllSubscriptions, stuff }) {
 			return <div>Hello {stuff}</div>;
 		}
 
-		const Decorated = DisposableDecorator()(Component);
+		const Decorated = Cancelable()(Component);
 
 		const wrapper = mount(<Decorated stuff={1} />);
 
@@ -30,7 +30,7 @@ describe("DisposableDecorator", function() {
 			}
 		}
 
-		const Decorated = DisposableDecorator()(Component);
+		const Decorated = Cancelable()(Component);
 
 		const wrapper = mount(<Decorated stuff={1} />);
 
@@ -59,7 +59,7 @@ describe("DisposableDecorator", function() {
 			}
 		}
 
-		const Decorated = DisposableDecorator()(Component);
+		const Decorated = Cancelable()(Component);
 
 		const wrapper = mount(<Decorated stuff={1} />);
 
@@ -90,7 +90,7 @@ describe("DisposableDecorator", function() {
 			}
 		}
 
-		const Decorated = DisposableDecorator()(Component);
+		const Decorated = Cancelable()(Component);
 
 		const wrapper = mount(<Decorated stuff={1} />);
 
@@ -109,7 +109,7 @@ describe("DisposableDecorator", function() {
 			}
 		}
 
-		const Decorated = DisposableDecorator()(Component);
+		const Decorated = Cancelable()(Component);
 
 		const makeError = () => mount(<Decorated stuff={1} />);
 		expect(makeError).toThrowError('cancelWhenUnmounted should be called with one or more disposables (an object with a dispose function)');
