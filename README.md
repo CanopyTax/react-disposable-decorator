@@ -2,13 +2,9 @@
 Primitives for automatically canceling observable subscriptions when a React
 component is unmounted.
 
-A `cancelWhenUnmounted` function is passed to the decorated component as a prop,
-which should be called with an observable subscription (a disposable). [Click here](https://github.com/Reactive-Extensions/RxJS/issues/817#issuecomment-122729155)
-for more documentation on canceling observables.
-
-Also, a `cancelAllSubscriptions` function is passed to the decorated component as a prop. This should be called with
-no arguments, and will cancel all subscriptions that were registered via `cancelWhenUnmounted`. It will also reset the list of
-subscriptions to be empty, so that future calls to `cancelWhenUnmounted` and `cancelAllSubscriptions` will start fresh.
+[![npm version](https://img.shields.io/npm/v/react-disposable-decorator.svg?style=flat-square)](https://www.npmjs.org/package/react-disposable-decorator)
+[![Build Status](https://img.shields.io/travis/CanopyTax/react-disposable-decorator.svg?style=flat-square)](https://travis-ci.org/CanopyTax/react-disposable-decorator)
+[![Code Coverage](https://img.shields.io/codecov/c/github/CanopyTax/react-disposable-decorator.svg?style=flat-square)](https://codecov.io/github/CanopyTax/react-disposable-decorator)
 
 # Installation
 `npm install react-cancelable`
