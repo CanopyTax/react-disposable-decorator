@@ -1,0 +1,16 @@
+{
+	"coveragePathIgnorePatterns": ["<rootDir>/node_modules"],
+	"collectCoverageFrom": ["src/**/*.js"],
+	"transform": {
+		".*": "./node_modules/babel-jest"
+	},
+	"testRegex": "./src/.*\\.spec\\.js$",
+	"rootDir": "./",
+	"modulePaths": ["./"],
+	"moduleNameMapper": {
+	},
+	"setupFiles": ["./jestsetup.js"],
+	"snapshotSerializers": [
+		"enzyme-to-json/serializer"
+  ]
+}
