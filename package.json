@@ -7,7 +7,6 @@
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib --source-maps",
     "test": "jest --coverage --config ./jest.json",
-    "test-snap": "jest --config ./jest.json -u",
     "test-watch": "jest --watch --config ./jest.json"
   },
   "repository": {
