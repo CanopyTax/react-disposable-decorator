@@ -8,11 +8,14 @@ export default function(DecoratedComponent) {
 		return DecoratedComponent;
 	}
 
-	class Disposable extends React.Component {
+	return class Disposable extends React.Component {
+    static displayName = `Disposable(${DecoratedComponent.displayName || DecoratedComponent.name})`
+
 		constructor(props) {
 			super(props);
 			this.disposables = [];
 		}
+
 		render() {
 			return <DecoratedComponent {...this.props} cancelWhenUnmounted={this.cancelWhenUnmounted} cancelAllSubscriptions={this.cancelAllSubscriptions} />
 		}
@@ -37,7 +40,4 @@ export default function(DecoratedComponent) {
 			this.disposables = [];
 		}
 	}
-
-  Disposable.displayName = `Disposable(${DecoratedComponent.displayName || DecoratedComponent.name})`
-  return Disposable
 }
