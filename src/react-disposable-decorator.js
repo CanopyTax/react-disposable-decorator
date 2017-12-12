@@ -8,7 +8,7 @@ export default function(DecoratedComponent) {
 		return DecoratedComponent;
 	}
 
-	return class Disposable extends React.Component {
+	class Disposable extends React.Component {
 		constructor(props) {
 			super(props);
 			this.disposables = [];
@@ -37,4 +37,7 @@ export default function(DecoratedComponent) {
 			this.disposables = [];
 		}
 	}
+
+  Disposable.displayName = `Disposable(${DecoratedComponent.displayName || DecoratedComponent.name})`
+  return Disposable
 }
