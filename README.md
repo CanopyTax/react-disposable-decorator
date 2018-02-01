@@ -11,7 +11,7 @@ no arguments, and will cancel all subscriptions that were registered via `cancel
 subscriptions to be empty, so that future calls to `cancelWhenUnmounted` and `cancelAllSubscriptions` will start fresh.
 Note that `cancelAllSubscriptions` is automatically called during componentWillUnmount.
 
-# Installation
+## Installation
 `npm install react-disposable-decorator`
 Or
 `yarn add react-disposable-decorator`
