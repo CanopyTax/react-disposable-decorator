@@ -9,9 +9,12 @@ for more documentation on canceling observables.
 Also, a `cancelAllSubscriptions` function is passed to the decorated component as a prop. This should be called with
 no arguments, and will cancel all subscriptions that were registered via `cancelWhenUnmounted`. It will also reset the list of
 subscriptions to be empty, so that future calls to `cancelWhenUnmounted` and `cancelAllSubscriptions` will start fresh.
+Note that `cancelAllSubscriptions` is automatically called during componentWillUnmount.
 
 # Installation
 `npm install react-disposable-decorator`
+Or
+`yarn add react-disposable-decorator`
 
 # Usage
 ```js
@@ -39,3 +42,12 @@ export default class SomeComponent extends React.Component {
 }
 ...
 ```
+
+#### In tests
+
+If you're using Enzyme shallow rendering, try doing [`shallow(<Foo />).dive()`](http://airbnb.io/enzyme/docs/api/ShallowWrapper/dive.html) on
+components decorated with react-disposable-decorator to be able to test the wrapped component.
+
+If you wish to disable the react-disposable-decorator in tests altogether (so you don't have to `.dive()`), you can
+set a global variable `ReactDisposableDecoratorEnabled = true` in your test configuration before you import the
+react-disposable-decorator javascript module into the test environment.
