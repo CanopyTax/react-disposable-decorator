@@ -13,7 +13,7 @@ Note that `cancelAllSubscriptions` is automatically called during componentWillU
 
 ## Installation
 `npm install react-disposable-decorator`
-Or
+or
 `yarn add react-disposable-decorator`
 
 ## Usage
