@@ -8,7 +8,7 @@ export default function(DecoratedComponent) {
   }
 
   return class Disposable extends React.Component {
-    static displayName = `Disposable(${DecoratedComponent.displayName || DecoratedComponent.name})`
+    static displayName = DecoratedComponent.displayName || DecoratedComponent.name
 
     constructor(props) {
       super(props);
