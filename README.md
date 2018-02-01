@@ -16,7 +16,7 @@ Note that `cancelAllSubscriptions` is automatically called during componentWillU
 Or
 `yarn add react-disposable-decorator`
 
-# Usage
+## Usage
 ```js
 import Cancelable from 'react-disposable-decorator';
 
@@ -43,7 +43,7 @@ export default class SomeComponent extends React.Component {
 ...
 ```
 
-#### In tests
+## In tests
 
 If you're using Enzyme shallow rendering, try doing [`shallow(<Foo />).dive()`](http://airbnb.io/enzyme/docs/api/ShallowWrapper/dive.html) on
 components decorated with react-disposable-decorator to be able to test the wrapped component.
