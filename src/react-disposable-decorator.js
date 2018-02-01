@@ -8,6 +8,8 @@ export default function(DecoratedComponent) {
   }
 
   return class Disposable extends React.Component {
+    // Don't change display name so snapshots and wrapper.find('CompName') works.
+    // Unfortunately, react-dev-tools might be weird though with two components with same name
     static displayName = DecoratedComponent.displayName || DecoratedComponent.name
 
     constructor(props) {
