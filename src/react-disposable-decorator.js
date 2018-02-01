@@ -3,7 +3,7 @@ import React from "react";
 const disabled = typeof disableReactDisposableDecorator === 'undefined' ? false : disableReactDisposableDecorator;
 
 export default function(DecoratedComponent) {
-  if (!disabled) {
+  if (disabled) {
     return DecoratedComponent;
   }
 
