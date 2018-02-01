@@ -49,5 +49,5 @@ If you're using Enzyme shallow rendering, try doing [`shallow(<Foo />).dive()`](
 components decorated with react-disposable-decorator to be able to test the wrapped component.
 
 If you wish to disable the react-disposable-decorator in tests altogether (so you don't have to `.dive()`), you can
-set a global variable `ReactDisposableDecoratorEnabled = true` in your test configuration before you import the
+set a global variable `disableReactDisposableDecorator = true` in your test configuration before you import the
 react-disposable-decorator javascript module into the test environment.
