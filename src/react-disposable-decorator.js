@@ -1,10 +1,9 @@
 import React from "react";
 
-const inTestingEnv = typeof jasmine !== 'undefined';
-const enabled = !inTestingEnv || (typeof ReactDisposableDecoratorEnabled !== 'undefined' && ReactDisposableDecoratorEnabled);
+const disabled = typeof disableReactDisposableDecorator === 'undefined' ? false : disableReactDisposableDecorator;
 
 export default function(DecoratedComponent) {
-  if (!enabled) {
+  if (disabled) {
     return DecoratedComponent;
   }
 
