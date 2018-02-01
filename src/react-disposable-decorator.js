@@ -1,9 +1,9 @@
 import React from "react";
 
-const enabled = typeof disableReactDisposableDecorator === 'undefined' || !disableReactDisposableDecorator;
+const disabled = typeof disableReactDisposableDecorator === 'undefined' || disableReactDisposableDecorator;
 
 export default function(DecoratedComponent) {
-  if (!enabled) {
+  if (!disabled) {
     return DecoratedComponent;
   }
 
