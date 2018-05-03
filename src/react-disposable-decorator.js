@@ -30,7 +30,7 @@ export default function(DecoratedComponent) {
     }
     cancelWhenUnmounted = (...thingsToCancel) => {
       if (thingsToCancel.length === 0) {
-          throw new Error(`cancelWhenUnmounted should be called with one or more cancelables (an object with a dispose, unsubscribe, or cancel function)`);
+        throw new Error(`cancelWhenUnmounted should be called with one or more cancelables (an object with a dispose, unsubscribe, or cancel function)`);
       }
 
       thingsToCancel.forEach(thingToCancel => {
