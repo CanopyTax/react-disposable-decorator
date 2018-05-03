@@ -1,0 +1,13 @@
+{
+  "coveragePathIgnorePatterns": ["<rootDir>/node_modules"],
+  "collectCoverageFrom": ["src/**/*.js"],
+  "rootDir": "./",
+  "modulePaths": ["./"],
+  "transform": {
+    ".*": "./node_modules/babel-jest"
+  },
+  "globals": {
+    "window": true
+  },
+  "setupTestFrameworkScriptFile": "./src/test-setup.js"
+}
