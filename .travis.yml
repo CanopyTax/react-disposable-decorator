@@ -3,4 +3,4 @@ node_js:
   - node # this means use the latest version
 script:
   - yarn build # Just to make sure the build works. Not actually used for anything
-# - yarn test (no tests yet for this project)
+  - yarn test

@@ -1,5 +1,5 @@
 # react-disposable-decorator
-Decorator for automatically canceling observable subscriptions when a React
+Decorator for automatically canceling observable and other subscriptions when a React
 component is unmounted.
 
 A `cancelWhenUnmounted` function is passed to the decorated component as a prop,
@@ -30,9 +30,9 @@ export default class SomeComponent extends React.Component {
       fetchSomeData.subscribe( data => this.setstate({data}) )
     );
   }
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     // Example usage of how you might use cancelAllSubscriptions
-    if (nextProps.needToMakeNewSubscriptions) {
+    if (this.props.needToMakeNewSubscriptions) {
       this.props.cancelAllSubscriptions();
       this.props.cancelWhenUnmounted(
         fetchSomeData.subscribe(data => this.setState({data}));

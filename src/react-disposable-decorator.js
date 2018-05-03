@@ -18,6 +18,7 @@ export default function(DecoratedComponent) {
     constructor(props) {
       super(props);
       this.disposables = [];
+      this.mounted = true;
     }
 
     render() {
@@ -25,23 +26,44 @@ export default function(DecoratedComponent) {
     }
     componentWillUnmount() {
       this.cancelAllSubscriptions();
+      this.mounted = false;
     }
     cancelWhenUnmounted = (...thingsToCancel) => {
+      if (thingsToCancel.length === 0) {
+        throw new Error(`cancelWhenUnmounted should be called with one or more cancelables (an object with a dispose, unsubscribe, or cancel function)`);
+      }
+
       thingsToCancel.forEach(thingToCancel => {
-        if (!thingToCancel || typeof thingToCancel.dispose !== 'function') {
-          throw new Error(`cancelWhenUnmounted should be called with one or more disposables (an object with a dispose function)`);
+        if (!thingToCancel || (typeof thingToCancel.dispose !== 'function' && typeof thingToCancel.cancel !== 'function' && typeof thingToCancel.unsubscribe !== 'function')) {
+          throw new Error(`cancelWhenUnmounted should be called with one or more cancelables (an object with a dispose, unsubscribe, or cancel function)`);
         }
-        this.disposables.push(thingToCancel);
+
+        if (this.mounted) {
+          this.disposables.push(thingToCancel);
+        } else {
+          // They called cancelWhenUnmounted after the component unmounted...
+          cancel(thingToCancel)
+        }
       });
     }
     cancelAllSubscriptions = () => {
       this.disposables.forEach(disposable => {
-        if (disposable && typeof disposable.dispose === 'function') {
-          disposable.dispose();
-        }
+        cancel(disposable)
       });
 
       this.disposables = [];
     }
+  }
+}
+
+function cancel(thing) {
+  if (typeof thing.dispose === 'function') {
+    thing.dispose()
+  } else if (typeof thing.unsubscribe === 'function') {
+    thing.unsubscribe()
+  } else if (typeof thing.cancel === 'function') {
+    thing.cancel()
+  } else {
+    // Don't throw an error when we can't cancel the thing they passed in.
   }
 }
