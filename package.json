@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "yarn build",
     "watch-tests": "jest --config jest.json --watch",
-    "test": "jest --config jest.json",
+    "test": "jest --config jest.json --coverage",
     "build": "rimraf lib && babel src --out-dir lib --source-maps"
   },
   "repository": {
