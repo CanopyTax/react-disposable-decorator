@@ -1,5 +1,5 @@
 import React from 'react'
-import {shallow} from 'enzyme'
+import {shallow, mount} from 'enzyme'
 import Cancelable from './react-disposable-decorator.js'
 
 describe(`@Cancelable`, () => {
@@ -65,8 +65,7 @@ describe(`@Cancelable`, () => {
     }
 
     const Comp = Cancelable(mockComponent)
-    const wrapper = shallow(<Comp />)
-    const innerWrapper = wrapper.dive()
+    const wrapper = mount(<Comp />)
 
     expect(disposable.dispose).not.toHaveBeenCalled()
 
@@ -84,8 +83,7 @@ describe(`@Cancelable`, () => {
     }
 
     const Comp = Cancelable(mockComponent)
-    const wrapper = shallow(<Comp />)
-    const innerWrapper = wrapper.dive()
+    const wrapper = mount(<Comp />)
 
     expect(subscription.unsubscribe).not.toHaveBeenCalled()
 
@@ -103,8 +101,7 @@ describe(`@Cancelable`, () => {
     }
 
     const Comp = Cancelable(mockComponent)
-    const wrapper = shallow(<Comp />)
-    const innerWrapper = wrapper.dive()
+    const wrapper = mount(<Comp />)
 
     expect(cancelable.cancel).not.toHaveBeenCalled()
 
@@ -123,8 +120,7 @@ describe(`@Cancelable`, () => {
     }
 
     const Comp = Cancelable(mockComponent)
-    const wrapper = shallow(<Comp />)
-    const innerWrapper = wrapper.dive()
+    const wrapper = mount(<Comp />)
 
     expect(subscription1.unsubscribe).not.toHaveBeenCalled()
     expect(subscription2.unsubscribe).not.toHaveBeenCalled()
@@ -150,8 +146,7 @@ describe(`@Cancelable`, () => {
     }
 
     const Comp = Cancelable(mockComponent)
-    const wrapper = shallow(<Comp />)
-    const innerWrapper = wrapper.dive()
+    const wrapper = mount(<Comp />)
 
     expect(subscription1.unsubscribe).not.toHaveBeenCalled()
     expect(subscription2.unsubscribe).not.toHaveBeenCalled()
@@ -173,8 +168,7 @@ describe(`@Cancelable`, () => {
     }
 
     const Comp = Cancelable(mockComponent)
-    const wrapper = shallow(<Comp />)
-    const innerWrapper = wrapper.dive()
+    const wrapper = mount(<Comp />)
 
     wrapper.unmount()
 
@@ -186,5 +180,46 @@ describe(`@Cancelable`, () => {
 
     expect(subscription.unsubscribe).toHaveBeenCalled()
     expect(subscription.unsubscribe.mock.calls.length).toBe(1)
+  })
+
+  it(`will pass through refs and a ref you create on the decorated component will actually be set on the component prior to decoration`, () => {
+    let mockTest = jest.fn()
+    mockComponent = class Mock extends React.Component {
+      constructor() {
+        super()
+        this.test = this.test.bind(this)
+      }
+      componentDidMount() {
+        mockCDM.apply(this, arguments)
+      }
+      render() {
+        return null
+      }
+      componentWillUnmount() {
+        mockCWU.apply(this, arguments)
+      }
+      test() {
+        mockTest()
+      }
+    }
+
+    const Comp = Cancelable(mockComponent)
+    const Parent = class Parent extends React.Component {
+      render () {
+        return (
+          <Comp ref={el => this.el = el} />
+        )
+      }
+    }
+    const wrapper = mount(<Parent />)
+    expect(mockTest).not.toHaveBeenCalled()
+
+    // calling the method on the mockComponent
+    // If ref forwarding was improperly setup then this method wouldn't exist and el would be the decoratedComponent
+    wrapper.instance().el.test()
+
+    expect(mockTest).toHaveBeenCalled()
+    expect(mockTest.mock.calls.length).toBe(1)
+
   })
 })

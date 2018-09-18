@@ -10,7 +10,7 @@ export default function(DecoratedComponent) {
 
   const originalDisplayName = DecoratedComponent.displayName || DecoratedComponent.name;
 
-  return class Disposable extends React.Component {
+  class Disposable extends React.Component {
     // Don't change display name in tests, so that snapshots and wrapper.find('CompName') works.
     // But in browser/non-tests react-dev-tools are easier to understand with a slightly altered display name
     static displayName = inTestingEnv ? originalDisplayName : `Cancelable(${originalDisplayName})`
@@ -22,7 +22,13 @@ export default function(DecoratedComponent) {
     }
 
     render() {
-      return <DecoratedComponent {...this.props} cancelWhenUnmounted={this.cancelWhenUnmounted} cancelAllSubscriptions={this.cancelAllSubscriptions} />
+      const {forwardedRef, ...rest} = this.props
+      return <DecoratedComponent
+        {...rest}
+        ref={forwardedRef}
+        cancelWhenUnmounted={this.cancelWhenUnmounted}
+        cancelAllSubscriptions={this.cancelAllSubscriptions}
+      />
     }
     componentWillUnmount() {
       this.cancelAllSubscriptions();
@@ -54,6 +60,10 @@ export default function(DecoratedComponent) {
       this.disposables = [];
     }
   }
+
+  return React.forwardRef((props, ref) => {
+    return <Disposable {...props} forwardedRef={ref} />
+  })
 }
 
 function cancel(thing) {
