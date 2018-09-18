@@ -212,7 +212,12 @@ describe(`@Cancelable`, () => {
       }
     }
     const wrapper = mount(<Parent />)
+    expect(mockTest).not.toHaveBeenCalled()
+
+    // calling the method on the mockComponent
+    // If ref forwarding was improperly setup then this method wouldn't exist and el would be the decoratedComponent
     wrapper.instance().el.test()
+
     expect(mockTest).toHaveBeenCalled()
     expect(mockTest.mock.calls.length).toBe(1)
 
