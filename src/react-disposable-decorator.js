@@ -22,7 +22,12 @@ export default function(DecoratedComponent) {
     }
 
     render() {
-      return <DecoratedComponent {...this.props} cancelWhenUnmounted={this.cancelWhenUnmounted} cancelAllSubscriptions={this.cancelAllSubscriptions} />
+      return <DecoratedComponent
+        {...this.props}
+        cancelWhenUnmounted={this.cancelWhenUnmounted}
+        cancelAllSubscriptions={this.cancelAllSubscriptions}
+        ref={el => this.el = el}
+      />
     }
     componentWillUnmount() {
       this.cancelAllSubscriptions();
