@@ -11,7 +11,7 @@ no arguments, and will cancel all subscriptions that were registered via `cancel
 subscriptions to be empty, so that future calls to `cancelWhenUnmounted` and `cancelAllSubscriptions` will start fresh.
 Note that `cancelAllSubscriptions` is automatically called during componentWillUnmount.
 
-Finally, react-disposable-decorator stores a react ref of the component that will be decorated as `this.el` so it is possible to access the original component.
+Finally, react-disposable-decorator uses the `forwardRef` API (requires `16.3+`) so it is possible to access the original component.
 
 ## Installation
 `npm install react-disposable-decorator`
@@ -54,12 +54,13 @@ If you wish to disable the react-disposable-decorator in tests altogether (so yo
 set a global variable `global.disableReactDisposableDecorator = true` in your test configuration before you import the
 react-disposable-decorator javascript module into the test environment.
 
-## Accessing Original component ref
-react-disposable-decorator stores a react ref of the oriignal component as `this.el`.
+## Refs
+react-disposable-decorator uses react 16.3+ and the forwardRef API to ensure that your refs go to the original component and not the decorated component.
 Using refs to access components have good use cases listed [here](https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs).
-`react-disposable-decorator` does not prevent using refs.
 
 ```jsx
+import Cancelable from 'react-disposable-decorator'
+
 @Cancelable
 class Hello extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class Hello extends React.Component {
 
 class wrappingComponent extends React.Component {
   componentDidMount() {
-    this.hello.el.logHello()
+    this.hello.logHello()
     // calls logHello
   }
   render () {

@@ -13,7 +13,12 @@
     "type": "git",
     "url": "git+https://github.com/CanopyTax/react-disposable-decorator.git"
   },
-  "author": "Keith Halterman & Joel Denning",
+  "contributors": [
+    {"name": "Keith Halterman"},
+    {"name": "Joel Denning"},
+    {"name": "Dan Kelser"},
+    {"name": "Justin McMurdie"}
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/CanopyTax/react-disposable-decorator/issues"
@@ -37,7 +42,7 @@
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "react": ">=15"
+    "react": ">=16.3"
   },
   "dependencies": {}
 }
