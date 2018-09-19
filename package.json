@@ -1,6 +1,6 @@
 {
   "name": "react-disposable-decorator",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "description": "decorator for handling observables",
   "main": "lib/react-disposable-decorator.js",
   "scripts": {
@@ -14,10 +14,18 @@
     "url": "git+https://github.com/CanopyTax/react-disposable-decorator.git"
   },
   "contributors": [
-    {"name": "Keith Halterman"},
-    {"name": "Joel Denning"},
-    {"name": "Dan Kelser"},
-    {"name": "Justin McMurdie"}
+    {
+      "name": "Keith Halterman"
+    },
+    {
+      "name": "Joel Denning"
+    },
+    {
+      "name": "Dan Kelser"
+    },
+    {
+      "name": "Justin McMurdie"
+    }
   ],
   "license": "Apache-2.0",
   "bugs": {
