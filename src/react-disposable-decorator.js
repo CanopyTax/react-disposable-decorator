@@ -5,7 +5,9 @@ const inTestingEnv = typeof jasmine !== 'undefined';
 
 export default function(DecoratedComponent) {
   if (disabled) {
-    return DecoratedComponent;
+    return <DecoratedComponent
+      cancelWhenUnmounted={()=>{}}
+    />
   }
 
   const originalDisplayName = DecoratedComponent.displayName || DecoratedComponent.name;
