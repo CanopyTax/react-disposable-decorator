@@ -1,6 +1,6 @@
 {
   "name": "react-disposable-decorator",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "decorator for handling observables",
   "main": "lib/react-disposable-decorator.js",
   "scripts": {
