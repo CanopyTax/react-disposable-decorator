@@ -9,5 +9,5 @@
   "globals": {
     "window": true
   },
-  "setupTestFrameworkScriptFile": "./src/test-setup.js"
+  "setupFilesAfterEnv": ["./src/test-setup.js"]
 }

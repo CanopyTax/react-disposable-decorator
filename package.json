@@ -1,6 +1,6 @@
 {
   "name": "react-disposable-decorator",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "decorator for handling observables",
   "main": "lib/react-disposable-decorator.js",
   "scripts": {
@@ -13,41 +13,27 @@
     "type": "git",
     "url": "git+https://github.com/CanopyTax/react-disposable-decorator.git"
   },
-  "contributors": [
-    {
-      "name": "Keith Halterman"
-    },
-    {
-      "name": "Joel Denning"
-    },
-    {
-      "name": "Dan Kelser"
-    },
-    {
-      "name": "Justin McMurdie"
-    }
-  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/CanopyTax/react-disposable-decorator/issues"
   },
   "homepage": "https://github.com/CanopyTax/react-disposable-decorator#readme",
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.46",
-    "@babel/core": "^7.0.0-beta.46",
-    "@babel/preset-env": "^7.0.0-beta.46",
-    "@babel/preset-react": "^7.0.0-beta.46",
-    "@babel/preset-stage-2": "^7.0.0-beta.46",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
     "babel-core": "^7.0.0-0",
-    "babel-jest": "^23.6.0",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "babel-jest": "^24.8.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0",
+    "jest-cli": "^24.8.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "regenerator-runtime": "^0.11.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   },
   "peerDependencies": {
     "react": ">=16.3"
